@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Sharing App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-violet-400 text-black">
+    <a id="lnkDownload" download>
+        <img src="" hidden/>
+    </a>
+    <div class="container mx-auto min-h-screen flex justify-center items-center">
+        <div class="columns-1">
+            <p class="text-xl font-semibold text-center mb-1">&#8644; Free Share &#8644;</p>
+            <p class="text-sm text-center mb-4">Share a file to any person easy and free</p>
+            <div class="rounded-xl p-2 bg-violet-200 w-80">
+                <div id="shareMoreContainer" class="text-center pt-2" style="display: none;">
+                    <a href="/index.html" class="text-blue-600 font-semibold hover:underline">Want to share more? Click here</a>
+                </div>
+                <div id="uploadContainer" class="pt-2 flex flex-col items-center justify-center">
+                    <div class="flex items-center justify-center h-full">
+                        <input id="fileInput" type="file" class="file:mr-4 file:py-2 file:px-4
+                    file:rounded-full file:border-0
+                    file:text-sm file:font-semibold
+                    file:bg-violet-50 file:text-violet-700
+                    hover:file:bg-violet-100" />
+                    </div>
+                    <div class="w-full py-2">
+                        <p class="text-left text-red-600 w-full" id="upload-err"></p>
+                        <div id="progress-track" class="relative h-4 mb-2 bg-gray-100 rounded-md" style="display: none;">
+                            <div id="progress" class="transition-all rounded-md h-full bg-green-500"></div>
+                            <div id="progressPer" class="text-xs font-medium absolute top-0 left-1/2" style="transform: translateX(-50%);">100%</div>
+                        </div>
+                    </div>
+                    <hr class="my-2 mt-auto w-full border-gray-500" />
+                    <button id="uploadBtn" class="my-2 w-full text-white px-4 py-2 bg-blue-500 rounded" type="button">Upload</button>
+                    <div id="downloadInfo" class="text-center" style="display: none;">
+                        <p id="uuidText"></p>
+                        <p class="text-sm">OR</p>
+                        <a id="downloadLink" class="text-blue-600 text-xs" href="javascript:navigator.clipboard.writeText(document.activeElement.innerText)"></a>
+                    </div>
+                </div>
+                <div class="py-2 pt-10">
+                    <input value="" id="uidInput" autocomplete="off" placeholder="Enter file id" class="rounded-lg w-full bg-sky-100 text-black p-2 outline-none focus:outline-sky-400" type="text" />
+                    <div class="w-full pb-2">
+                        <p class="text-left text-red-600 w-full" id="download-err"></p>
+                    </div>
+                    <button id="downloadBtn" class="px-4 py-2 w-full rounded-md bg-lime-400 my-2 hover:bg-lime-500" type="button">
+                        Download
+                    </button>
+                </div>
+                <div>
+                    <p class="text-xs text-gray-500">Note: Once file is download by user, file will be removed from server permanently.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="js/script.js"></script>
+</body>
+
+</html>
