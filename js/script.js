@@ -45,7 +45,6 @@ function upload() {
   if (file.files.length != 0) {
     let upfile = file.files[0];
     let ext = upfile.name.split(".").pop();
-    console.log(ext);
     const storageRef = ref(
       storage,
       "uploads/" + new Date().getTime() + "." + ext
@@ -57,7 +56,6 @@ function upload() {
         progressTrack.style.display = "block";
         const progress =
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        console.log(progress);
         progressDiv.style.width = progress + "%";
         progressPer.innerText = Math.round(progress) + "%";
       },
@@ -87,7 +85,6 @@ function upload() {
 
 async function download() {
   downloadErr.innerText = "";
-  let flag = false;
   var promises = [];
     var c;
     var res = await listAll(listRef);
@@ -104,7 +101,6 @@ async function download() {
     });
     Promise.any(promises).then(f => {
       if (f) {
-        // flag = true;
         var fileRef = ref(storage, f.fullPath);
         getDownloadURL(fileRef).then((url) => {
           window.open(url, "_blank");
@@ -119,43 +115,6 @@ async function download() {
     }).catch(err => {
       downloadErr.innerText = "File not found";
     })
-//   await listAll(listRef).then((res) => {
-//       res.items.forEach((i) => {
-//         (async () => {
-
-//         var c = await getMetadata(i).then((d) =>
-//             uidInput.value === d.customMetadata.uuid
-//               ? d
-//               : null
-//           )
-//           console.log(c)
-//           //   .then((file) => {
-//           //     if (file) {
-//           //       resolve(file);
-//           //       flag = true;
-//           //       var fileRef = ref(storage, file.fullPath);
-//           //       getDownloadURL(fileRef).then((url) => {
-//           //         window.open(url, "_blank");
-//           //       });
-//           //     }
-//           //   })
-//         })();  
-
-//       });
-//     });
-
-//   a.then((v) => console.log(v)).finally(() => console.log("final"));
-//   Promise.all(promises)
-//     .then((file) => {
-//         console.log(file)
-//       promises.map((promise) => Promise.resolve(promise));
-//     })
-    // .then(() => {
-    //   if (flag == false) {
-    //     downloadErr.innerText = "File not found";
-    //   }
-    //   console.log("YYYY");
-    // });
 }
 
 uploadBtn.addEventListener("click", upload);
